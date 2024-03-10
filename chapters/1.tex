@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{A série de \textit{Fourier}}
+...
+
+\section{O núcleo de \textit{Dirichlet}}
+
+\begin{definicao}
+Seja $X$ espaço topológico, $\varphi: X \longrightarrow \,]-\infty, \infty]$. Dizemos que $\varphi$ é semi-contínua inferiormente (\textsc{s.c.i}) em $X$ quando $\{x: \varphi(x)>\alpha\}$ é aberto em $X$, $\forall \,\alpha \in \mathbb{R}$.
+\end{definicao}
+
+Note que $\varphi^{-1}(\{\infty\}) = \bigcap\limits_{n\in \Z} \{ x\in X \mid \varphi(x)>n\}$ é $G_\delta$.
+
+\begin{exercicio}
+Se $\{\varphi_i\}_{i \in I}$ é uma família de funções \textsc{s.c.i.}, mostre que $\sup _{i \in I} \varphi_i$ é \textsc{s.c.i.}\\
+\textit{Solução}. Seja $U(f) = \{x\in X \mid f(x) > \alpha\}$ para um $\alpha$ qualquer e um dado funcional $f$. Note que 
+$$U\Big(\underbrace{\sup_{i \in I} \varphi_i}_{\psi}\Big) = \bigcup_{i \in I} U(\varphi_i)$$
+De fato, seja $x$ tal que $\psi(x) > \alpha$. Por ser o supremo, existe $i\in I$ tal que $\psi(x) \geqslant \varphi_i(x) > \alpha$. Logo $x\it U(\varphi_i)$, mostrando que $U(\psi)$ está contido na união acima. A outra inclusão é evidente.
+
+Como cada $\varphi_i$ é \textsc{s.c.i.}, o conjunto acima é uma união de abertos, i.e., $U(\psi)$ é aberto. Como o argumento acima funciona para todo $\alpha$, segue o resultado. 
+\end{exercicio}
+
+\end{document}

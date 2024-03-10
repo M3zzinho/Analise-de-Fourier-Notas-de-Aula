@@ -1,0 +1,44 @@
+\RequirePackage{etex}
+\documentclass[twoside,11pt,b5paper,leqno]{report}
+\usepackage{tagging}
+\usetag{BR}
+\input{structure/packages}
+\input{structure/macros}
+
+\title{{\Huge\textsc{Análise de Fourier}} \\\, \\ 
+Notas de Aula: \textbf{MAT0464} \\
+Professor Dr. Paulo D. Cordaro
+}
+\author{Gustavo P. Mezzovilla}
+\date{}
+
+% Notações
+\newcommand{\UnitalCircle}{\ensuremath{\mathbb T}}
+
+\makeindex
+\begin{document}
+\maketitle
+% \begin{titlepage}
+% 	\thispagestyle{empty}
+% 	\includepdf{figures/capa-samya-v1.pdf}
+% \end{titlepage}
+
+%\maketitle
+
+
+% \tableofcontents
+\thispagestyle{empty}
+\foreach \i in {1, ..., 4}{
+    \subfile{chapters/\i}
+}
+
+
+%\appendix
+
+%\input{chapters/appendix.tex}
+\printindex
+\bibliographystyle{apalike}
+\bibliography{ref.bib}
+
+
+\end{document}

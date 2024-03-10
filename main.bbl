@@ -1,0 +1,20 @@
+\begin{thebibliography}{}
+
+\bibitem[Baire, 1899]{baire1899fonctions}
+Baire, R. (1899).
+\newblock Sur les fonctions de variables r{\'e}elles.
+\newblock {\em Annali di Matematica Pura ed Applicata (1898-1922)}, 3:1--123.
+
+\bibitem[Carleson, 1966]{carleson1966convergence}
+Carleson, L. (1966).
+\newblock On convergence and growth of partial sums of fourier series.
+\newblock {\em Uppsala, Sweden, and Stanford California, U.S.A.}
+\newblock
+  \url{http://archive.ymsc.tsinghua.edu.cn/pacm_download/117/6015-11511_2006_Article_BF02392815.pdf}.
+
+\bibitem[Rudin, 1976]{rudin1976principles}
+Rudin, W. (1976).
+\newblock {\em Principles of Mathematical Analysis}.
+\newblock International series in pure and applied mathematics. McGraw-Hill.
+
+\end{thebibliography}

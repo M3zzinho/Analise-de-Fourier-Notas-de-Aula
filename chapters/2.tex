@@ -1,0 +1,145 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+Escolha uma sequência $\{\theta_j\}_j\subset \UnitalCircle$. Pelo teorema de \cite{baire1899fonctions}\footnote{A intersecção de abertos densos em um espaço métrico completo é densa.}\index{Baire}, existe $H \subset C(\UnitalCircle)$ tal que $\sup_{N\in \mathbb N} |S_N(f,\theta_j)| = \infty$ para qualquer $f \in H$. Fixando uma $f$, note que aplicação $|S_N(f, \come)|$  é contínua no intervalo $[-\pi, \pi[$. Logo, a função
+\begin{equation*}
+    \function{{\lambda_f}{[-\pi, \pi[}{]-\infty, \infty]}{\theta}{\sup_{N\in\mathbb N}|S_N(f, \theta)|}}
+\end{equation*}
+é semi-contínua inferiormente (\textsc{s.c.i}) em $\UnitalCircle$. Além disso, o conjunto dos ângulos tais que  $\lambda_f(\theta) = \infty$  é $G_\delta$. Escolhendo $\{\theta_j\}_j$ denso em $\UnitalCircle$, concluímos o seguinte Teorema:
+
+\begin{teorema}
+    \label{teo: aula02 - angulos com soma infinita eh Gdelta denso}
+    Existe $H\subset C(\UnitalCircle)$ $G_\delta$-denso tal que, se $f\in H$ o conjunto
+    \begin{equation*}
+        \Big\{\theta \in \UnitalCircle \,\Big|\, {\sup_{N\in\mathbb N}|S_N(f, \theta)|} = \infty\Big\}
+    \end{equation*}
+     é $G_\delta$-denso e tem medida zero.
+\end{teorema}
+
+\begin{observacao}
+    \label{obs: Gdelta denso eh nao enumeravel em espacos sem pontos isolados}
+    Em um espaço métrico completo sem pontos isolados, todo conjunto $G_\delta$-denso é não enumerável. De fato, se um conjunto enumerável $G = \{g_n\}_{n \in \mathbb N}$ for denso e puder ser escrito como a intersecção de abertos $U_n$ não triviais, cada $U_n$ também seria denso. Note que todo $V_n \coloneqq U_n \backslash \{g_n\}$ é um aberto-denso visto que o espaço não possui pontos isolados. Entretanto, $\bigcap_n V_n = \varnothing$ contrariando o Teorema de Baire.
+\end{observacao}
+
+\begin{invocacao}[\cite{carleson1966convergence}]
+    Se $f\in L^2(\UnitalCircle)$, então as somas parciais $S_N(f, \come)$ convergem para $f$ para quase todo ponto em $\UnitalCircle$.
+\end{invocacao}
+
+\section{Decaimento dos Coeficientes}
+
+\begin{teorema}
+    \label{teo: estimativa do n-esimo coef}
+    Seja $k \geqslant 1$ e $f\in C^k(\UnitalCircle)$. Então existe uma constante $c = c(f, k) > 0$ que estima o $n$-ésimo coeficiente da expansão de Fourier:
+    $$
+    |C_n(f)| = \Bigg|\dfrac{1}{2\pi}\int\limits_{-\pi}^\pi f(\theta) e^{-in\theta}\,\de\theta\Bigg|\leqslant \dfrac c{|n^k|}
+    $$
+    para qualquer inteiro $n \in \mathbb Z$.
+
+    \begin{proof}
+        Note que a $k$-ésima derivada de $e^{-in\theta}$ é igual a $(-in)^k e^{-in\theta}$. Substituindo na expressão do $n$-ésimo termo, podemos integrar por partes para obter a seguinte relação:
+
+        \begin{equation}
+        \label{eq: substitui derivada no n-esimo termo}
+        \begin{array}{rcl}
+            C_n(f) &=& \displaystyle \dfrac{1}{2\pi}\int\limits_{-\pi}^\pi f(\theta) \dfrac{1}{(-in)^k} \dfrac{\de{^k}}{\de\theta^k}\left[e^{-in\theta}\right]\,\de\theta \\
+             &=& \displaystyle \dfrac{1}{2\pi}\dfrac{1}{(-in)^k}\int\limits_{-\pi}^\pi f^{(k)}(\theta)  e^{-in\theta}\,\de\theta \\
+        \end{array}
+        \end{equation}
+        Tomando o valor absoluto em (\ref{eq: substitui derivada no n-esimo termo}), o valor $c \coloneqq \inv{(2\pi)} \int_{-\pi}^{\pi} |f^{(k)}|$ satisfaz a propriedade desejada.
+    \end{proof}
+\end{teorema}
+
+\begin{lema}[Riemann-Lebesgue]
+    \label{lema: riemman lebesgue}
+    Se $f\in L^1(\UnitalCircle)$, então $C_n(f)\overset{|n|\to \infty}\longto 0$.
+    \begin{proof}
+        Seja $\varepsilon > 0$. Note que para qualquer $g\in L^1(\UnitalCircle)$, temos a seguinte expressão: 
+        
+        \begin{equation*}
+            \begin{array}{rcl}
+                 |C_n(f)| &=& |C_n(f-g + g)| \\
+                 &=& |C_n(f-g) + C_n(g)|\\
+                 &\leqslant& |C_n(f-g)| + |C_n(g)|\\
+                 &\leqslant& \sub{\|f-g\|}{L^1(\UnitalCircle)} + |C_n(g)|
+            \end{array}
+        \end{equation*}
+        Como $C^1(\UnitalCircle)$ é denso em $L^1(\UnitalCircle)$, existe $g\in C^1(\UnitalCircle)$ tal que $\sub{\|f-g\|}{L^1(\UnitalCircle)} \leqslant \varepsilon/2$. E pelo Teorema \ref{teo: estimativa do n-esimo coef}, existe $\sub n0\in \N$ tal que $|C_n(g)| < \varepsilon/2$ para $|n|\geqslant \sub n0$. Ou seja, $|C_n(f)| < \varepsilon$ para $|n|\geqslant \sub n0$.
+    \end{proof}
+\end{lema}
+
+\begin{corolario}
+    Considerando a forma integral dos coeficientes de Fourier, é possível definir $C_\alpha(f)$ para qualquer $\alpha \in \R$. Consequentemente, os resultados \ref{teo: estimativa do n-esimo coef} e \ref{lema: riemman lebesgue} continuam válidos sobre essa extensão.
+ \end{corolario}
+
+\begin{teorema}
+    Sejam $f\in C(\UnitalCircle)$ e $\sub t0\in \UnitalCircle$. Suponha que existem $c > 0$ e $\delta> 0$ tais que:
+    \begin{eqspaced*}{(\forall\,t : |t-\sub t0| < \delta)}
+        |f(t)-f(\sub t0)| \leqslant c |t - \sub t0|
+    \end{eqspaced*}
+    Então $S_N(f, \sub t0) \overset{N \to \infty}{\longto} f(\sub t0)$.
+
+    \begin{proof}
+        Sabemos que $S_N(f,\sub t0) = \inv{(2\pi)} \int_{-\pi}^\pi f(\sub t0 - \theta) D_N(\theta)\,\de\theta$ e portanto:
+        \begin{equation}
+            \label{eq: estimacao da diferenca das somas parciais e a funcao em um ponto}
+            \begin{array}{rcl}
+            S_N(f, \sub t0)  - f(\sub t0) &=& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi f(\sub t0 - \theta) D_N(\theta)\, \de\theta \\
+            &  & \displaystyle \hspace{1cm}- f(\sub t0)\underbrace{\dfrac{1}{2\pi} \int\limits_{-\pi}^\pi  D_N(\theta)\,\de\theta}_{= 1}\\
+                 &=& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi \Big[f(\sub t0 - \theta)- f(\sub t0)\Big]  D_N(\theta)\,\de\theta \\
+                 & =& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi \dfrac{f(\sub t0 - \theta)- f(\sub t0)}{\sin \theta/2}  \sin \left(N+\frac12\right)\theta\,\,\,\de\theta \\
+            \end{array}
+        \end{equation}
+        Vamos verificar no lema \ref{lema: funcao h auxiliar eh L1} abaixo que a aplicação dada por 
+        \begin{equation}
+            \label{eq: funcao h auxliar}
+            \function{
+            {h}{[-\pi, \pi]}{\mathbb R}{\theta}{\dfrac{f(\sub t0 - \theta)- f(\sub t0)}{\sin \theta/2}}
+            }
+        \end{equation}
+        pertence a $L^1(\UnitalCircle)$. Isso possibilitará aplicar o lema de Riemman-Lebesgue \ref{lema: riemman lebesgue}. Assim, reescrevendo a expressão em (\ref{eq: estimacao da diferenca das somas parciais e a funcao em um ponto}) em função de $h$ e da expressão exponencial do $\sin(\come)$, temos:
+        \begin{equation*}
+        \begin{array}{rcl}
+            S_N(f,\sub t0) - f(\sub t0) 
+            &=& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi h(\theta) \sin \left(N+\frac12\right)\theta \,\,\,\de\theta  \\
+            &=& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi h(\theta) \dfrac{e^{i\left(N+\frac12\right)\theta} - e^{-i\left(N+\frac12\right)\theta}}{2i} \,\,\,\de\theta  \\
+            &=& \displaystyle \dfrac{1}{2i}\dfrac{1}{2\pi} \int\limits_{-\pi}^\pi h(\theta) e^{i\left(N+\frac12\right)\theta} \de\theta \\
+            & &\displaystyle \hspace{1cm}- \dfrac{1}{2i}\dfrac{1}{2\pi} \int\limits_{-\pi}^\pi h(\theta)e^{-i\left(N+\frac12\right)\theta} \de\theta  \\
+        \end{array}
+        \end{equation*}
+        Pelo lema de Riemman-Lebesgue \ref{lema: riemman lebesgue}, os dois termos acima convergem para $0$ e portanto, temos que $S_N(f,\sub t0) - f(\sub t0) \overset{N\to \infty}{\longto} 0$.
+    \end{proof}
+\end{teorema}
+
+\begin{lema}
+    \label{lema: funcao h auxiliar eh L1}
+    A aplicação $h$ definida em (\ref{eq: funcao h auxliar}) pertence a $L^1$.
+    \begin{proof} 
+        Note que
+        \begin{equation*}
+            h(\theta) = \dfrac{f(\sub t0 - \theta)- f(\sub t0)}\theta \cdot \underbrace{\dfrac\theta{\sin \theta/2}}_{\in L^\infty(\UnitalCircle)}
+        \end{equation*}
+        Por hipótese, se $\theta\in \UnitalCircle$ satisfaz $|\theta| < \delta$, então $|f(\sub t0 - \theta) - f(\sub t0)| \leqslant c|\theta|$. Por outro lado, se $|\theta| \geqslant \delta$, considere $M > 0$ tal que $|f(\theta)| \leqslant M$ (que existe pois $f$ é uma  contínua definida num compacto).  Assim $|f(\sub t0 - \theta) - f(\sub t0)| \leqslant 2M|\theta|/\delta$. Ou seja:
+        \begin{equation*}
+            \dfrac{|f(\sub t0 - \theta) - f(\sub t0)|}{|\theta|} \leqslant \begin{cases}
+                c, & \text{se }|\theta| < \delta \\
+                2M/\delta, & \text{se }|\theta|\geqslant \delta
+            \end{cases}
+        \end{equation*}
+
+        Considerando os dois casos, nota-se que $h$ é o produto de uma função limitada por uma que pertence a $L^\infty(\UnitalCircle)$. Portanto, $h \in L^1(\UnitalCircle)$.
+    \end{proof}
+\end{lema}
+...
+\section{O Teorema de \textit{Fejer}}
+
+\begin{definicao}
+    \label{def: nucleo de fejer}
+    O núcleo de \textit{Fejer} é dado por $F_N(\theta) = \sum_{n=0}^N D_n(\theta)$.
+\end{definicao}
+    
+    
+\begin{lema}
+    $F_N(\theta) = \sin^2 [(N+1)\theta/2] / [\sin^2 \theta/2 \cdot (N+1)]$
+\end{lema}
+
+\end{document}

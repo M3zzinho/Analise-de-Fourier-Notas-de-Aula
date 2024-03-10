@@ -1,0 +1,23 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+
+
+\begin{teorema}[\textit{Fejer}]
+    Se $f\in L^\infty(\UnitalCircle)$ é contĩnua em um ponto $\sub t0 \in \UnitalCircle$, então $\sub\sigma N(f, \sub t0) \longto f(\sub t0)$. Caso $f$ seja contínua em todo ponto, então $\sub\sigma N(f, \come) \longto f$ uniformemente em $\UnitalCircle$.
+\end{teorema}
+Para demonstrar este Teorema, vamos estudar algumas propriedades do núcleo de \textit{Fejer} na \ref{prop: propriedades do nucleo de fejer}
+\begin{proposicao}
+    \label{prop: propriedades do nucleo de fejer}
+    A respeito do núcleo de \textit{Fejer} \ref{def: nucleo de fejer}, valem as seguintes propriedades:
+    \begin{itroman}
+        \item $\forall\,\theta \in [-\pi, \pi[\,, F_N(\theta) \geqslant 0$;
+        \item $\displaystyle \dfrac1{2\pi} \int\limits_{-\pi}^\pi F_N(\theta)\,\de\theta = 1$.
+        \item Para um dado $\varepsilon > 0$, seja $T_\varepsilon \coloneqq [-\pi, \pi[ \backslash \{\theta \in \UnitalCircle \mid |\theta| < \varepsilon\}$. Assim, 
+        $$
+        \int_{T_\varepsilon} F_N(\theta)\,\de\theta \overset{N \to \infty}\longto 0
+        $$
+        para qualquer $\varepsilon > 0$.
+    \end{itroman}
+\end{proposicao}
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\section{\texorpdfstring{$L^2(\UnitalCircle)$}{L2(T)} como espaço de Hilbert}
+Vamos utilizar o seguinte resultado sobre ortonormalidade em espaços de Hilbert.
+\begin{invocacao}
+    \label{inv: ortonormalidade em hilbert}
+    Seja $\{e_n\}_{n\in \Z}$ um conjunto de vetores ortonormais em um espaço de Hilbert $H$, e suponha que $\span \{e_n\}_{n\in \Z}$ forme um subespaço denso. Assim, todo $x\in H$ pode ser escrito como
+    \begin{equation*}
+        x = \sum_{n\in\Z} x_n e_n
+    \end{equation*}
+    onde $x_n \coloneqq \inner x{e_n}$ é o $n$-ésimo coeficiente de Fourier de $x$. Além disso, temos que $\inner xy = \sum_{n\in \Z} x_n\con{y_n}$. Em particular, temos a seguinte versão do teorema de Pitágoras para espaços de Hilbert:
+    \begin{equation*}
+        \|x\|^2 = \sum_{n\in \Z} {|x_n|}^2.
+    \end{equation*}
+\end{invocacao}
+
+Consideramos o seguinte produto interno em $L^2(\UnitalCircle)$, tornando-o em um espaço de Hilbert:
+\begin{equation*}
+    \inner fg = \dfrac1{2\pi} \int\limits_{-\pi}^\pi f(\theta) \con{g(\theta)}\,\de \theta
+\end{equation*}
+Considerando $e_n \coloneqq (\theta\longmapsto e^{in\theta}) \in L^2(\theta)$, nota-se que $\inner{e_n}{e_m} = \delta_{nm}$, de modo que $\{e_n\}_{n\in \Z}$ forma um sistema ortonormal em $L^2(\UnitalCircle)$. Portanto, podemos utilizar a estrutura de Hilbert \ref{inv: ortonormalidade em hilbert} e concluir a \textit{fórmula de Parseval} para funções $f,g \in L^2(\UnitalCircle)$:
+\begin{equation*}
+    \inner fg = \sum_{n\in \Z} C_n(f) \con{C_n(g)}
+\end{equation*}
+
+Combinações lineares desses vetores resultam em polinômios na variável $e^{i\theta}$ ($\C[e^{i\theta}] = \C[\cos\theta, \sin\theta]$), e por tanto, $\span_{n\in \Z} \{e_n\}$ é conhecido como o conjunto dos \textit{polinômios trigonométricos}.
+
+\begin{proposicao}
+    \label{prop: trig eh denso}
+    O espaço dos polinômios trigonométricos $\C[e^{i\theta}]$ é denso em $L^2(\UnitalCircle)$.
+
+    \begin{proof}
+        Escolha $f \in L^2(\UnitalCircle)$ e $\varepsilon > 0$. Como as funções contínuas são densas em $L^2(\UnitalCircle)$, tome $u \in C(\UnitalCircle)$ tal que $\|f - u\| < \varepsilon/2$. 
+
+        Pelo Teorema da aproximação de Weierstra\ss, existe um polinômio trigonométrico $p\in \C[e^{i\theta}]$ tal que $\big(\sup_{t\in \mathbb T}|u(t) - p(t)|\big)^{1/2} < \varepsilon/2$. Em particular,
+        \begin{equation*}
+            \|u - p\| = \Bigg({\dfrac1{2\pi} \int\limits_{-\pi}^\pi \underbrace{|u(\theta) - p(\theta)|}_{\leqslant \sup\limits_{t\in \mathbb T}|u(t) - p(t)|} \,\de\theta\Bigg)^{\frac12}} < \dfrac\varepsilon2.
+        \end{equation*}
+        O resultado segue da desigualdade triangular.
+    \end{proof}
+\end{proposicao}
+
+Como consequência do resultado acima \ref{prop: trig eh denso}, obtemos $S_N(f, \come) \overset{N\to\infty}{\longto} f$ para as funções $f\in L^2(\UnitalCircle)$.
+
+
+\begin{corolario}
+    Se $f\in L^2(\UnitalCircle)$, então existe uma sequência de índices $N_j \to \infty$ tal que $S_{N_j}(f, \theta) \overset{j\to \infty}\longto f(\theta)$ para quase todo $\theta \in \UnitalCircle$.
+\end{corolario}
+
+\begin{corolario}
+    Se $f\in L^2(\UnitalCircle)$ e $P_R$ é o núcleo de Poisson, então $P_R(f, \come) \overset{R\to1}{\longto} f$ em $L^2(\UnitalCircle)$.
+    \begin{proof}
+        Como $\{e^{in\theta}\}_n$ forma um sistema ortonormal, vale o Teorema de Pitágoras:
+        \begin{equation*}
+            \sub{\left\|P_R(f,\theta) - f(\theta)\right\|}{L^2(\UnitalCircle)}^2 = \sum_{n\in \Z} (R^{|n|} - 1)^2|C_n(f)|^2 \underbrace{|e^{in\theta}|^2}_1 \overset{R\to 1}\longto 0.
+        \end{equation*}
+    \end{proof}
+\end{corolario}
+
+\begin{corolario}
+    Se $f\in C^1(\UnitalCircle)$, então $S_N(f, \come) \overset{N\to\infty}{\longto} f$ uniformemente em $L ^2(\UnitalCircle)$.
+    \begin{proof}
+        Como $f$ é diferenciável em todo ponto, a convergência das somas parciais se da de maneira pontual. De modo a garantir a uniformidade, vejamos que a série $\sum_{n\in\Z} C_n(f) e^{in\theta}$ converge uniformemente para $f(\theta)$ em $\UnitalCircle$.
+        
+        Apliquemos o M-teste de Weierstra\ss\,\,\cite[Theorem 7.10]{rudin1976principles}\index{M-teste de Weierstra\ss}, obtendo estimativas do termo genérico $C_n(f)$, assim como na demonstração do Teorema \ref{teo: estimativa do n-esimo coef}. Integrando por partes e usando a desigualdade das médias na seguinte forma, $ab \leqslant \frac12(a^2 +b^2)$ para quaisquer $a,b \geqslant 0$, obtemos:
+        \begin{equation*}
+            \begin{array}{rcl}
+                C_n(f) &=& \displaystyle \dfrac{1}{2\pi} \int\limits_{-\pi}^\pi f(\theta) \dfrac{1}{-in} \dfrac{\de{}}{\de\theta}\left[e^{-in\theta}\right] \,\de\theta\\
+                &=& \displaystyle \dfrac1{-in} \Bigg[\underbrace{\dfrac1{2\pi} f(\theta) e^{-in\theta}\Bigg|^{\theta= \pi}_{\theta= -\pi}}_0 -  \underbrace{\dfrac{1}{2\pi}\int\limits_{-\pi}^\pi f'(\theta)e^{-in\theta}\,\de\theta}_{C_n(f')} \Bigg]\\
+                &=& \displaystyle \dfrac1{in} C_n(f')\\
+                &\overset{\textsc{ma-mg}}\leqslant& \vphantom{\int\limits^b}\displaystyle \dfrac12 \left(\dfrac1{|n|^2}  + |C_n(f')|^2\right) \eqqcolon M_n.
+            \end{array}
+        \end{equation*}
+        Como $f\in C^1(\UnitalCircle)$, temos que $f'$ é contínua e, portanto, $C_n(f') \overset{|n|\to \infty}\longto 0$ pelo Lema de Riemann-Lebesgue \ref{lema: riemann-lebesgue}. Assim, a série $\sum_{n\in\Z} M_n$ converge, e o M-teste garante a convergência uniforme da série $\sum_{n\in\Z} C_n(f) e^{in\theta}$.
+    \end{proof}
+\end{corolario}
+
+\begin{corolario}
+    Se $f\in C^\infty(\UnitalCircle)$, então $S_N(f, \come)^{(j)} \overset{N\to\infty}{\longto} f^{(j)}$ uniformemente em $L^2(\UnitalCircle)$ para qualquer ordem $j\geqslant 0$ de derivada.
+
+    \begin{proof}
+        A ideia é a mesma da demonstração do corolário anterior. A $j$-ésima derivada da série é dada por $\sum_n C_n(f) (in)^j e^{in\theta}$. Como $f$ é em particular de classe $C^{j+2}$, existe\footnote{Basta integrar por partes introduzindo a derivada de ordem $j+2$.} uma constante $\alpha = \alpha(j, f)$ tal que $|C_n(f)| \leqslant \alpha/|n|^2$ para todo $n\in \Z$. O resultado segue do M-teste de Weierstra\ss.
+    \end{proof}
+\end{corolario}
+
+
+\chapter{Aplicações na Análise Complexa}
+Antes de prosseguir, definimos a terminologia que será utilizada ao longo deste capítulo. Para evitar confusões com as funções analíticas reais, chamaremos de \textit{função holomorfa} toda função $f: \Omega\longto \C$ que é diferenciável em todo ponto de um conjunto aberto $\Omega\subseteq \C$. É denotado por $\mathscr O(\Omega)$ o conjunto de todas as funções holomorfas em $\Omega$. Além disso, definimos um \textit{anel complexo} $A(\sub z0, a,b) \coloneqq \{z\in \C \mid a < |z-\sub z0| < b\}$.
+
+Com as definições acima, podemos enunciar a questão fundamental da qual iremos investigar:
+\begin{quote}
+    \textbf{Questão.} Seja $f\in L^1(\UnitalCircle)$. Quando é possível determinar $\varepsilon>0$ e $h\in \mathscr OA(0, 1-\varepsilon, 1+\varepsilon)$ tal que $h \sub\restrita{\UnitalCircle} = f$?
+\end{quote}
+
+\end{document}
